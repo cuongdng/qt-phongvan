@@ -3,12 +3,14 @@ package com.berserker.qtpv.service.impl;
 import com.berserker.qtpv.entity.Candidate;
 import com.berserker.qtpv.entity.Resume;
 import com.berserker.qtpv.model.CreateCandidateDTO;
+import com.berserker.qtpv.model.CustomException;
 import com.berserker.qtpv.repository.CandidateRepository;
 import com.berserker.qtpv.repository.ResumeRepository;
 import com.berserker.qtpv.service.CandidateService;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,8 +40,12 @@ public class CandidateServiceImpl implements CandidateService {
   }
 
   @Override
-  public String deleteCandidateById(Long id) {
-    candidateRepository.deleteById(id);
-    return "Delete successfully";
+  public String deleteCandidateById(Long id) throws Exception {
+      if (candidateRepository.existsById(id)) {
+        candidateRepository.deleteById(id);
+        return "Delete successfully";
+      } else {
+        throw new Exception("Entity with that ID does not exist.");
+      }
   }
 }

@@ -23,7 +23,7 @@ public class CandidateController {
   }
 
   @DeleteMapping()
-  String deleteCandidate(@RequestParam("id") Long id) {
+  String deleteCandidate(@RequestParam("id") Long id) throws Exception {
     String result = candidateService.deleteCandidateById(id);
     return result;
   }
