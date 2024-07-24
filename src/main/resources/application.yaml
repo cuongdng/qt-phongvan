@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: qtpv
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd
+  config:
+    import: file:env.properties
+
+server:
+  port: 3000
+  error:
+    include-stacktrace: never
