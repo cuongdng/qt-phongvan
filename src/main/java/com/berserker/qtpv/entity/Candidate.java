@@ -1,15 +1,12 @@
 package com.berserker.qtpv.entity;
 
 import com.berserker.qtpv.base.BaseEntity;
-import com.berserker.qtpv.model.CreateCandidateDTO;
+import com.berserker.qtpv.model.candidate.CreateCandidateDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
@@ -30,6 +27,9 @@ public class Candidate extends BaseEntity {
   private String fullName;
   @Column(nullable = false)
   private String phoneNumber;
+
+  @Column(nullable = false, unique = true)
+  private String email;
   private LocalDate dateOfBirth;
 
   @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
@@ -40,5 +40,6 @@ public class Candidate extends BaseEntity {
     this.fullName = dto.getFullName();
     this.phoneNumber = dto.getPhoneNumber();
     this.dateOfBirth = dto.getDob();
+    this.email = dto.getEmail();
   }
 }

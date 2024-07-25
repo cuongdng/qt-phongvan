@@ -2,15 +2,17 @@ package com.berserker.qtpv.service.impl;
 
 import com.berserker.qtpv.entity.Candidate;
 import com.berserker.qtpv.entity.Resume;
-import com.berserker.qtpv.model.CreateCandidateDTO;
 import com.berserker.qtpv.model.CustomException;
+import com.berserker.qtpv.model.candidate.CreateCandidateDTO;
+import com.berserker.qtpv.model.candidate.SearchCandidateDTO;
 import com.berserker.qtpv.repository.CandidateRepository;
 import com.berserker.qtpv.repository.ResumeRepository;
 import com.berserker.qtpv.service.CandidateService;
+import com.berserker.qtpv.specification.CandidateSpecification;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +24,8 @@ public class CandidateServiceImpl implements CandidateService {
 
   @Override
   public Candidate createCandidate(CreateCandidateDTO createCandidateDTO) {
-    Optional<Candidate> existCandidate = candidateRepository.findByPhoneNumber(
-        createCandidateDTO.getPhoneNumber());
+    Optional<Candidate> existCandidate = candidateRepository.findByEmail(
+        createCandidateDTO.getEmail());
     if (existCandidate.isPresent()) {
       Resume resume = Resume.builder().resumeUrl(createCandidateDTO.getResumeUrl())
           .candidate(existCandidate.get()).build();
@@ -47,5 +49,15 @@ public class CandidateServiceImpl implements CandidateService {
       } else {
         throw new Exception("Entity with that ID does not exist.");
       }
+  }
+
+  @Override
+  public Page<Candidate> search(SearchCandidateDTO searchCandidateDTO) {
+    return candidateRepository.findAll(CandidateSpecification.criteria(searchCandidateDTO), searchCandidateDTO.getPageable());
+  }
+
+  @Override
+  public Candidate findById(Long id) {
+    return candidateRepository.findDetailById(id).orElseThrow();
   }
 }

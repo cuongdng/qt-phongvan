@@ -19,4 +19,5 @@ spring:
 server:
   port: 3000
   error:
-    include-stacktrace: never
+    include-stacktrace: on_param
+    include-message: always
