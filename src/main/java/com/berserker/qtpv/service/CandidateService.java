@@ -1,6 +1,7 @@
 package com.berserker.qtpv.service;
 
 import com.berserker.qtpv.entity.Candidate;
+import com.berserker.qtpv.model.candidate.CandidateWithResumeDTO;
 import com.berserker.qtpv.model.candidate.CreateCandidateDTO;
 import com.berserker.qtpv.model.candidate.SearchCandidateDTO;
 import org.springframework.data.domain.Page;
@@ -12,5 +13,5 @@ public interface CandidateService {
 
   Page<Candidate> search(SearchCandidateDTO searchCandidateDTO);
 
-  Candidate findById(Long id);
+  CandidateWithResumeDTO findByIdWithResume(Long id);
 }

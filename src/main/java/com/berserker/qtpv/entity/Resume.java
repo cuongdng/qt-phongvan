@@ -1,12 +1,14 @@
 package com.berserker.qtpv.entity;
 
 import com.berserker.qtpv.base.BaseEntity;
+import com.berserker.qtpv.base.ResumeStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.ser.Serializers.Base;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,8 +20,10 @@ import jakarta.persistence.TemporalType;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -31,10 +35,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @AllArgsConstructor
 @Builder
 public class Resume extends BaseEntity {
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY,optional = false)
+  @ManyToOne(cascade = CascadeType.ALL, optional = false)
   @JoinColumn(name = "candidate_id")
-  @JsonBackReference
   private Candidate candidate;
   @Column(nullable = false)
   private String resumeUrl;
+  @Enumerated
+  private ResumeStatus status = ResumeStatus.IDLE;
 }

@@ -6,6 +6,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -29,6 +30,7 @@ public class InterviewProcess extends BaseEntity {
   @JoinColumn(name = "resume_id")
   private Resume resume;
 
+  @Enumerated
   private InterviewProcessStatus status;
 
 }

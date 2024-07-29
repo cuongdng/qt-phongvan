@@ -31,11 +31,6 @@ public class Candidate extends BaseEntity {
   @Column(nullable = false, unique = true)
   private String email;
   private LocalDate dateOfBirth;
-
-  @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
-  @JsonManagedReference
-  private List<Resume> resumes;
-
   public Candidate(@NonNull CreateCandidateDTO dto) {
     this.fullName = dto.getFullName();
     this.phoneNumber = dto.getPhoneNumber();

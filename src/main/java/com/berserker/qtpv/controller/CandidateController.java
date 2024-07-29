@@ -1,6 +1,7 @@
 package com.berserker.qtpv.controller;
 
 import com.berserker.qtpv.entity.Candidate;
+import com.berserker.qtpv.model.candidate.CandidateWithResumeDTO;
 import com.berserker.qtpv.model.candidate.CreateCandidateDTO;
 import com.berserker.qtpv.model.candidate.SearchCandidateDTO;
 import com.berserker.qtpv.service.CandidateService;
@@ -32,8 +33,8 @@ public class CandidateController {
   }
 
   @GetMapping("/{id}")
-  Candidate findById(@PathVariable Long id) {
-    return candidateService.findById(id);
+  CandidateWithResumeDTO findById(@PathVariable Long id) {
+    return candidateService.findByIdWithResume(id);
   }
   @PostMapping()
   Candidate createCandidate(@RequestBody CreateCandidateDTO createCandidateDTO) {
