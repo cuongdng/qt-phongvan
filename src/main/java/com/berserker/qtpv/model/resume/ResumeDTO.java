@@ -1,5 +1,6 @@
-package com.berserker.qtpv.model.candidate;
+package com.berserker.qtpv.model.resume;
 
+import com.berserker.qtpv.base.ResumeStatus;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Data;
@@ -12,4 +13,5 @@ public class ResumeDTO {
   private LocalDateTime createdAt;
   private Long candidateId;
   private String resumeUrl;
+  private ResumeStatus status;
 }

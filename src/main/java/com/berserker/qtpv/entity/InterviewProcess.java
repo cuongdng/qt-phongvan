@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,17 +21,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class InterviewProcess extends BaseEntity {
-
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "candidate_id")
-  private Candidate candidate;
-
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "resume_id")
   private Resume resume;
-
-  @Enumerated
   private InterviewProcessStatus status;
-
 }
