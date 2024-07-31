@@ -1,7 +1,6 @@
 package com.berserker.qtpv.repository;
 
 import com.berserker.qtpv.entity.InterviewProcess;
-import com.berserker.qtpv.entity.Resume;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,6 +14,6 @@ public interface InterviewProcessRepository extends JpaRepository<InterviewProce
     JpaSpecificationExecutor<InterviewProcess> {
 
   @Override
-  @EntityGraph(attributePaths = {"resume.candidate"})
+  @EntityGraph(attributePaths = {"resume", "resume.candidate"})
   Page<InterviewProcess> findAll(Specification<InterviewProcess> spec, Pageable pageable);
 }

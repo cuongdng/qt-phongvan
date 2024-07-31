@@ -1,6 +1,5 @@
 package com.berserker.qtpv.specification;
 
-import com.berserker.qtpv.entity.Candidate;
 import com.berserker.qtpv.entity.Resume;
 import com.berserker.qtpv.model.resume.SearchResumeDTO;
 import jakarta.persistence.criteria.Predicate;

@@ -30,6 +30,6 @@ public class ResumeController {
   @PostMapping("/change-status")
   ResponseEntity<Resume> updateStatus(@RequestBody UpdateStatusDTO updateStatusDTO)
       throws BadRequestException {
-    return ResponseEntity.ok(resumeService.changeStatus(updateStatusDTO.getId(), updateStatusDTO.getStatus()));
+    return ResponseEntity.ok(resumeService.changeStatus(updateStatusDTO.getResumeId(), updateStatusDTO.getResumeStatus()));
   }
 }

@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class UpdateStatusDTO {
-  private Long id;
-  private ResumeStatus status;
+  private Long resumeId;
+  private ResumeStatus resumeStatus;
 }
