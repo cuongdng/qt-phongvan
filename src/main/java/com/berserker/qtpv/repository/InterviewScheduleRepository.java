@@ -22,4 +22,6 @@ public interface InterviewScheduleRepository extends JpaRepository<InterviewSche
 
   @Query(value = "select count(schedule) > 0 from InterviewSchedule schedule where ((:startTime > schedule.startTime  and :startTime < schedule.endTime) or (:endTime < schedule.endTime and :endTime > schedule.startTime) or (:startTime = schedule.startTime or :endTime = schedule.endTime)) and (:id is null or schedule.id != :id)")
   boolean existsByTime(LocalDateTime startTime, LocalDateTime endTime, Long id);
+
+  void deleteByInterviewProcess_Id(Long processId);
 }

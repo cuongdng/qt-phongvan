@@ -1,7 +1,6 @@
 package com.berserker.qtpv.entity;
 
 import com.berserker.qtpv.base.BaseEntity;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.JoinColumn;

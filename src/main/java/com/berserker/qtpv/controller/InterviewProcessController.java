@@ -2,6 +2,7 @@ package com.berserker.qtpv.controller;
 
 import com.berserker.qtpv.entity.InterviewProcess;
 import com.berserker.qtpv.entity.Resume;
+import com.berserker.qtpv.model.interviewprocess.ChangeProcessStatusDTO;
 import com.berserker.qtpv.model.interviewprocess.SearchInterviewProcessDTO;
 import com.berserker.qtpv.model.resume.SearchResumeDTO;
 import com.berserker.qtpv.model.resume.UpdateStatusDTO;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,5 +31,12 @@ public class InterviewProcessController {
     } catch (Exception e) {
       throw new Exception(e.getMessage());
     }
+  }
+
+  @PutMapping("/change-status")
+  ResponseEntity<InterviewProcess> changeStatus(@RequestBody ChangeProcessStatusDTO changeProcessStatusDTO)
+      throws BadRequestException {
+    return ResponseEntity.ok(interviewProcessService.changeStatus(changeProcessStatusDTO));
+
   }
 }
