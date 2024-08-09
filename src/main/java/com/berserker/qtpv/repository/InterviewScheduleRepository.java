@@ -24,4 +24,6 @@ public interface InterviewScheduleRepository extends JpaRepository<InterviewSche
   boolean existsByTime(LocalDateTime startTime, LocalDateTime endTime, Long id);
 
   void deleteByInterviewProcess_Id(Long processId);
+
+  InterviewSchedule findByInterviewProcess_Id(Long processId);
 }
